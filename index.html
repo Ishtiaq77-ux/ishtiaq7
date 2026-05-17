@@ -2,20 +2,133 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Website</title>
+  <title>My Portfolio</title>
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: #f0f0f0;
-      padding: 50px;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f0f0f;
+      color: #f0f0f0;
     }
-    h1 { color: #4A90E2; }
-    p  { color: #555; font-size: 18px; }
+
+    header {
+      background: #1a1a2e;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 48px;
+      color: #4A90E2;
+    }
+
+    header p {
+      font-size: 18px;
+      color: #aaa;
+      margin-top: 10px;
+    }
+
+    section {
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      font-size: 28px;
+      color: #4A90E2;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #4A90E2;
+      padding-bottom: 8px;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .skill {
+      background: #1a1a2e;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 14px;
+      color: #4A90E2;
+      border: 1px solid #4A90E2;
+    }
+
+    .card {
+      background: #1a1a2e;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 { color: #fff; margin-bottom: 8px; }
+    .card p  { color: #aaa; line-height: 1.6; }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      color: #555;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
-  <h1>My First Website 🚀</h1>
-  <p>Hello world! This site is live on GitHub Pages.</p>
+
+  <!-- HERO -->
+  <header>
+    <h1>Your Name</h1>
+    <p>AI Student & Aspiring ML Engineer</p>
+  </header>
+
+  <!-- ABOUT -->
+  <section>
+    <h2>About Me</h2>
+    <p style="color:#aaa; line-height:1.8;">
+      I'm passionate about Artificial Intelligence and machine learning.
+      Currently learning everything from neural networks to LLMs,
+      with a goal of becoming a top-tier AI practitioner.
+    </p>
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <h2>Skills</h2>
+    <div class="skills">
+      <span class="skill">Python</span>
+      <span class="skill">Machine Learning</span>
+      <span class="skill">Deep Learning</span>
+      <span class="skill">HTML & CSS</span>
+      <span class="skill">JavaScript</span>
+      <span class="skill">GitHub</span>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section>
+    <h2>Projects</h2>
+    <div class="card">
+      <h3>🤖 AI Portfolio Site</h3>
+      <p>Built and deployed a personal portfolio website using HTML, CSS, and JavaScript. Hosted on GitHub Pages.</p>
+    </div>
+    <div class="card">
+      <h3>📊 More projects coming soon...</h3>
+      <p>Currently building AI projects to showcase here.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section>
+    <h2>Contact</h2>
+    <p style="color:#aaa;">📧 your@email.com</p>
+  </section>
+
+  <footer>
+    <p>Built with HTML & CSS · Hosted on GitHub Pages</p>
+  </footer>
+
 </body>
 </html>
