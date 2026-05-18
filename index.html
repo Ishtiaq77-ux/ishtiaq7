@@ -1,134 +1,678 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Portfolio</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ishtiaq — AI Student & Researcher</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #0f0f0f;
-      color: #f0f0f0;
-    }
+  :root {
+    --white: #ffffff;
+    --off-white: #f8f7f4;
+    --light: #f0ede8;
+    --muted: #e8e4de;
+    --border: #ddd9d2;
+    --text-main: #1a1916;
+    --text-secondary: #5a5751;
+    --text-muted: #9e9b96;
+    --accent: #2b4a8c;
+    --accent-light: #e8edf7;
+    --accent2: #1d6b52;
+    --accent2-light: #e4f0eb;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
 
-    header {
-      background: #1a1a2e;
-      padding: 60px 20px;
-      text-align: center;
-    }
+  html { scroll-behavior: smooth; }
 
-    header h1 {
-      font-size: 48px;
-      color: #4A90E2;
-    }
+  body {
+    font-family: var(--sans);
+    background: var(--white);
+    color: var(--text-main);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
 
-    header p {
-      font-size: 18px;
-      color: #aaa;
-      margin-top: 10px;
-    }
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 6vw;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    color: var(--text-main);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
 
-    section {
-      max-width: 800px;
-      margin: 60px auto;
-      padding: 0 20px;
-    }
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    padding: 120px 6vw 80px;
+    display: flex;
+    align-items: center;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, #e8edf7 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, #e4f0eb 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 780px;
+    position: relative; z-index: 1;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 2rem;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-desc {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    max-width: 560px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-block;
+    padding: 13px 28px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    border: 2px solid var(--accent);
+  }
+  .btn-primary:hover { background: #1e3a73; border-color: #1e3a73; }
+  .btn-outline {
+    background: transparent;
+    color: var(--text-main);
+    border: 2px solid var(--border);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-    h2 {
-      font-size: 28px;
-      color: #4A90E2;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #4A90E2;
-      padding-bottom: 8px;
-    }
+  /* DIVIDER */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    margin: 0 6vw;
+    width: calc(100% - 12vw);
+  }
 
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
+  /* SECTION */
+  section {
+    padding: 100px 6vw;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: var(--text-main);
+    margin-bottom: 2.5rem;
+  }
 
-    .skill {
-      background: #1a1a2e;
-      padding: 8px 18px;
-      border-radius: 20px;
-      font-size: 14px;
-      color: #4A90E2;
-      border: 1px solid #4A90E2;
-    }
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5vw;
+    align-items: start;
+  }
+  .about-text p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.85;
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+  }
+  .about-text p strong {
+    color: var(--text-main);
+    font-weight: 500;
+  }
+  .about-stats {
+    display: flex; flex-direction: column; gap: 1.5rem;
+  }
+  .stat-card {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.4rem;
+    line-height: 1;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+  }
+  .stat-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+  }
 
-    .card {
-      background: #1a1a2e;
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 20px;
-    }
+  /* SKILLS */
+  .skills-bg {
+    background: var(--off-white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 100px 0;
+  }
+  .skills-bg section { padding: 0 6vw; }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .skill-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 20px rgba(43, 74, 140, 0.08);
+  }
+  .skill-icon {
+    width: 44px; height: 44px;
+    background: var(--accent-light);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+  }
+  .skill-title {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+  }
+  .skill-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .tag-row {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;
+  }
+  .tag {
+    font-size: 0.78rem;
+    font-weight: 400;
+    padding: 4px 10px;
+    border-radius: 100px;
+    background: var(--muted);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+  }
 
-    .card h3 { color: #fff; margin-bottom: 8px; }
-    .card p  { color: #aaa; line-height: 1.6; }
+  /* FOCUS AREAS */
+  .focus-list {
+    display: flex; flex-direction: column; gap: 1px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .focus-item {
+    display: flex; align-items: flex-start; gap: 2rem;
+    padding: 2rem 2.5rem;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .focus-item:last-child { border-bottom: none; }
+  .focus-item:hover { background: var(--off-white); }
+  .focus-num {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    color: var(--muted);
+    line-height: 1;
+    min-width: 2rem;
+    padding-top: 2px;
+  }
+  .focus-content {}
+  .focus-title {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text-main);
+    margin-bottom: 0.4rem;
+  }
+  .focus-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+    line-height: 1.7;
+  }
 
-    footer {
-      text-align: center;
-      padding: 40px;
-      color: #555;
-      font-size: 14px;
-    }
-  </style>
+  /* GOALS */
+  .goals-bg {
+    background: var(--accent);
+    padding: 100px 0;
+  }
+  .goals-bg section { padding: 0 6vw; }
+  .goals-bg .section-label { color: rgba(255,255,255,0.5); }
+  .goals-bg .section-title { color: #fff; }
+  .goals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+  .goal-card {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 14px;
+    padding: 1.8rem;
+  }
+  .goal-card p {
+    color: rgba(255,255,255,0.85);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .goal-card strong {
+    display: block;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5vw;
+    align-items: center;
+  }
+  .contact-intro {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 0.95rem;
+    font-weight: 400;
+    transition: all 0.2s;
+  }
+  .contact-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-light);
+  }
+  .contact-link span { font-size: 1.2rem; }
+  .contact-right {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+  }
+  .contact-right h3 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .contact-right p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 6vw;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 0.87rem;
+    color: var(--text-muted);
+  }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .fade-up:nth-child(2) { transition-delay: 0.1s; }
+  .fade-up:nth-child(3) { transition-delay: 0.2s; }
+  .fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+  @media (max-width: 768px) {
+    .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    nav { padding: 0 4vw; }
+    .nav-links { gap: 1.2rem; }
+    section { padding: 70px 5vw; }
+    .hero { padding: 100px 5vw 60px; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- HERO -->
-  <header>
-    <h1>Your Name</h1>
-    <p>AI Student & Aspiring ML Engineer</p>
-  </header>
+<nav>
+  <a class="nav-logo" href="#">Ishtiaq</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#focus">Focus</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-  <!-- ABOUT -->
-  <section>
-    <h2>About Me</h2>
-    <p style="color:#aaa; line-height:1.8;">
-      I'm passionate about Artificial Intelligence and machine learning.
-      Currently learning everything from neural networks to LLMs,
-      with a goal of becoming a top-tier AI practitioner.
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <span class="hero-tag">AI Student & Researcher</span>
+    <h1>Pursuing <em>mastery</em><br>in Artificial Intelligence</h1>
+    <p class="hero-desc">
+      Deeply committed to understanding AI from the ground up — theory, engineering, and real-world application. Not just proficiency, but true expertise.
     </p>
-  </section>
+    <div class="hero-cta">
+      <a href="#about" class="btn btn-primary">Learn About Me</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+</div>
 
-  <!-- SKILLS -->
-  <section>
-    <h2>Skills</h2>
-    <div class="skills">
-      <span class="skill">Python</span>
-      <span class="skill">Machine Learning</span>
-      <span class="skill">Deep Learning</span>
-      <span class="skill">HTML & CSS</span>
-      <span class="skill">JavaScript</span>
-      <span class="skill">GitHub</span>
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">Who I Am</p>
+  <div class="about-grid">
+    <div class="about-text">
+      <h2 class="section-title">A student<br>on a mission</h2>
+      <p>My name is <strong>Ishtiaq</strong>, and I'm deeply focused on <strong>Artificial Intelligence</strong> — not as a casual interest, but as a lifelong pursuit. I'm based in <strong>Faisalabad, Pakistan</strong>, working toward becoming one of the most rigorous and knowledgeable practitioners in the field.</p>
+      <p>My approach combines strong theoretical foundations with hands-on projects, guided by a belief that genuine mastery requires understanding every layer — from mathematical principles to production-level systems.</p>
+      <p>I use every tool at my disposal: rigorous study, challenging projects, knowledge checks, and continuous iteration. The goal is not just proficiency, but <strong>exceptional capability</strong>.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card fade-up">
+        <div class="stat-num">AI</div>
+        <div class="stat-label">Primary field of study and specialization</div>
+      </div>
+      <div class="stat-card fade-up">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Committed to deep, rigorous understanding</div>
+      </div>
+      <div class="stat-card fade-up">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Growth mindset — always learning, always improving</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<div class="skills-bg">
+  <section id="skills" style="max-width:1100px; margin:0 auto;">
+    <p class="section-label">Capabilities</p>
+    <h2 class="section-title">Core skills &amp; domains</h2>
+    <div class="skills-grid">
+      <div class="skill-card fade-up">
+        <div class="skill-icon">🧠</div>
+        <div class="skill-title">Machine Learning</div>
+        <div class="skill-desc">Supervised, unsupervised, and reinforcement learning — understanding models from theory to implementation.</div>
+        <div class="tag-row">
+          <span class="tag">Regression</span>
+          <span class="tag">Classification</span>
+          <span class="tag">Clustering</span>
+          <span class="tag">RL</span>
+        </div>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-icon">🔬</div>
+        <div class="skill-title">Deep Learning</div>
+        <div class="skill-desc">Neural network architectures, backpropagation, optimization — building intuition for why models behave as they do.</div>
+        <div class="tag-row">
+          <span class="tag">CNNs</span>
+          <span class="tag">RNNs</span>
+          <span class="tag">Transformers</span>
+          <span class="tag">PyTorch</span>
+        </div>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-icon">💬</div>
+        <div class="skill-title">Natural Language Processing</div>
+        <div class="skill-desc">Language models, tokenization, embeddings, and the modern LLM landscape from BERT to GPT-style architectures.</div>
+        <div class="tag-row">
+          <span class="tag">LLMs</span>
+          <span class="tag">Embeddings</span>
+          <span class="tag">Fine-tuning</span>
+          <span class="tag">RAG</span>
+        </div>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-icon">📐</div>
+        <div class="skill-title">Mathematics for AI</div>
+        <div class="skill-desc">Linear algebra, calculus, probability, and statistics — the rigorous mathematical foundations that underpin all of AI.</div>
+        <div class="tag-row">
+          <span class="tag">Linear Algebra</span>
+          <span class="tag">Calculus</span>
+          <span class="tag">Statistics</span>
+          <span class="tag">Probability</span>
+        </div>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-icon">🐍</div>
+        <div class="skill-title">Programming</div>
+        <div class="skill-desc">Python-first development for AI — data pipelines, model training, evaluation, and deployment workflows.</div>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">Scikit-learn</span>
+        </div>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-icon">🔭</div>
+        <div class="skill-title">Research Mindset</div>
+        <div class="skill-desc">Reading papers, reproducing results, stress-testing ideas — approaching AI with intellectual curiosity and rigor.</div>
+        <div class="tag-row">
+          <span class="tag">Paper Reading</span>
+          <span class="tag">Experiments</span>
+          <span class="tag">Analysis</span>
+        </div>
+      </div>
     </div>
   </section>
+</div>
 
-  <!-- PROJECTS -->
-  <section>
-    <h2>Projects</h2>
-    <div class="card">
-      <h3>🤖 AI Portfolio Site</h3>
-      <p>Built and deployed a personal portfolio website using HTML, CSS, and JavaScript. Hosted on GitHub Pages.</p>
+<!-- FOCUS AREAS -->
+<section id="focus" style="max-width:1100px; margin:0 auto;">
+  <p class="section-label">What Drives Me</p>
+  <h2 class="section-title">Areas of deep focus</h2>
+  <div class="focus-list">
+    <div class="focus-item fade-up">
+      <div class="focus-num">01</div>
+      <div class="focus-content">
+        <div class="focus-title">Large Language Models & Alignment</div>
+        <div class="focus-desc">Understanding how modern LLMs work at a mechanistic level — training dynamics, emergent behaviors, and the challenge of building AI systems that are safe and aligned with human intent.</div>
+      </div>
     </div>
-    <div class="card">
-      <h3>📊 More projects coming soon...</h3>
-      <p>Currently building AI projects to showcase here.</p>
+    <div class="focus-item fade-up">
+      <div class="focus-num">02</div>
+      <div class="focus-content">
+        <div class="focus-title">Reinforcement Learning</div>
+        <div class="focus-desc">From Q-learning to policy gradient methods and modern RL from human feedback (RLHF) — learning how agents can master complex environments through interaction.</div>
+      </div>
+    </div>
+    <div class="focus-item fade-up">
+      <div class="focus-num">03</div>
+      <div class="focus-content">
+        <div class="focus-title">AI Systems & Engineering</div>
+        <div class="focus-desc">Bridging research and production — understanding how to build, evaluate, and deploy AI systems that actually work reliably in the real world.</div>
+      </div>
+    </div>
+    <div class="focus-item fade-up">
+      <div class="focus-num">04</div>
+      <div class="focus-content">
+        <div class="focus-title">Interpretability & Understanding</div>
+        <div class="focus-desc">Not satisfied with black-box performance — I want to understand *why* models work, what representations they learn, and how to make AI more transparent.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOALS -->
+<div class="goals-bg">
+  <section style="max-width:1100px; margin:0 auto;">
+    <p class="section-label" style="color:rgba(255,255,255,0.5);">My Ambitions</p>
+    <h2 class="section-title" style="color:#fff;">Where I'm headed</h2>
+    <div class="goals-grid">
+      <div class="goal-card fade-up">
+        <strong>Comprehensive Mastery</strong>
+        <p>Not surface-level familiarity — I want to understand every concept deeply enough to teach it, extend it, and critique it.</p>
+      </div>
+      <div class="goal-card fade-up">
+        <strong>Research Contribution</strong>
+        <p>Aspiring to contribute original ideas to AI research — building on the shoulders of giants to push the field forward.</p>
+      </div>
+      <div class="goal-card fade-up">
+        <strong>Top-Tier Practitioner</strong>
+        <p>Among the best in the field — someone who combines theoretical depth with practical capability to build truly impactful AI.</p>
+      </div>
+      <div class="goal-card fade-up">
+        <strong>Global Impact</strong>
+        <p>Representing Pakistan on the world stage of AI — proving that exceptional talent exists everywhere, not just in Silicon Valley.</p>
+      </div>
     </div>
   </section>
+</div>
 
-  <!-- CONTACT -->
-  <section>
-    <h2>Contact</h2>
-    <p style="color:#aaa;">📧 your@email.com</p>
-  </section>
+<!-- CONTACT -->
+<section id="contact" style="max-width:1100px; margin:0 auto;">
+  <p class="section-label">Get in Touch</p>
+  <h2 class="section-title">Let's connect</h2>
+  <div class="contact-grid">
+    <div>
+      <p class="contact-intro">
+        Whether you're a fellow AI enthusiast, a researcher, or someone looking to collaborate — I'd love to hear from you. I'm always open to meaningful conversations about AI, learning, and ideas.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:ishtiaq@example.com" class="contact-link">
+          <span>✉️</span> ishtiaq@example.com
+        </a>
+        <a href="#" class="contact-link">
+          <span>💼</span> LinkedIn — Ishtiaq
+        </a>
+        <a href="#" class="contact-link">
+          <span>🐙</span> GitHub — @ishtiaq
+        </a>
+        <a href="#" class="contact-link">
+          <span>🐦</span> Twitter / X — @ishtiaq_ai
+        </a>
+      </div>
+    </div>
+    <div class="contact-right fade-up">
+      <h3>Based in Faisalabad, Pakistan</h3>
+      <p>Studying and working toward a future in AI research and engineering. Open to mentorship, collaboration, and connecting with others in the AI community worldwide.</p>
+      <p style="font-size:0.9rem; color:var(--text-muted);">
+        🕐 Pakistan Standard Time (PKT, UTC+5)<br/>
+        Typically respond within 24 hours
+      </p>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    <p>Built with HTML & CSS · Hosted on GitHub Pages</p>
-  </footer>
+<footer>
+  <span>© 2026 Ishtiaq — AI Student & Researcher</span>
+  <span>Faisalabad, Pakistan 🇵🇰</span>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
